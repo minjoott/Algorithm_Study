@@ -1,4 +1,3 @@
-```java
 package ch08_BFS;
 
 import java.io.BufferedReader;
@@ -96,14 +95,13 @@ public class p10026 {
 	}
 }
 
-//class Point {
-//	int X;
-//	int Y;
-//	
-//	Point(int X, int Y) {
-//		this.X = X;
-//		this.Y = Y;
-//	}
-//}
+class Point {
+	int X;
+	int Y;
+	
+	Point(int X, int Y) {
+		this.X = X;
+		this.Y = Y;
+	}
+}
 
-```
