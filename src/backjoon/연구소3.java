@@ -47,14 +47,16 @@ public class 연구소3 {
 
     static void backtracking(int start, List<int[]> active, List<int[]> virus, int[][] map) {
         if (active.size() == M) {
+            boolean[][] visited = new boolean[N][N];
             Deque<int[]> queue = new ArrayDeque<>();
             for (int[] a : active) {
                 queue.add(new int[]{a[0], a[1], 0});
+                visited[a[0]][a[1]] = true;
             }
 
             int[] curr = null;
             int emptyCnt = 0;
-            boolean[][] visited = new boolean[N][N];
+            int currSpreadTime = 0;
             while (!queue.isEmpty()) {
                 curr = queue.poll();
 
@@ -64,8 +66,12 @@ public class 연구소3 {
 
                     if (nextY >= N || nextY < 0 || nextX >= N || nextX < 0 || visited[nextY][nextX]) continue;
 
-                    if (map[nextY][nextX] == 0) {
-                        emptyCnt++;
+                    if (map[nextY][nextX] == 0 || map[nextY][nextX] == 2) {
+                        if (map[nextY][nextX] == 0) {
+                            emptyCnt++;
+                            currSpreadTime = curr[2] + 1;
+                        }
+
                         queue.add(new int[]{nextY, nextX, curr[2] + 1});
                         visited[nextY][nextX] = true;
                     }
@@ -73,8 +79,8 @@ public class 연구소3 {
             }
 
             if (emptyCnt == emptyNum) {
-                if (curr[2] < minSpreadTime) {
-                    minSpreadTime = curr[2];
+                if (currSpreadTime < minSpreadTime) {
+                    minSpreadTime = currSpreadTime;
                 }
             }
 
