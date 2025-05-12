@@ -23,9 +23,9 @@ public class 과제진행하기 {
 
         while (completedCnt < N) {
             int end = curTime + curPlan.rest;
-            if (ptr + 1 < N && plans[ptr + 1].start < end) {  // 현재 진행 중인 과제가 끝나기 전에 새로운 과제를 시작할 시각이 되면,
+            if (ptr + 1 < N && plans[ptr + 1].start < end) {  // 현재 진행 중인 과제가 끝나기 전에 새로 시작할 과제가 있다면,
                 ptr++;
-                stack.push(new Entry(curPlan.name, end - plans[ptr].start));  // 진행 중이던 과제를 멈추고,
+                stack.push(new Entry(curPlan.name, end - plans[ptr].start));  // 진행 중이던 과제를 멈추고
 
                 curTime = plans[ptr].start;  // 새로운 과제를 시작
                 curPlan = new Entry(plans[ptr].name, plans[ptr].duration);
@@ -34,13 +34,13 @@ public class 과제진행하기 {
                 answer[completedCnt++] = curPlan.name;  // 현재 진행 중인 과제를 완료!
                 curTime = end;
 
-                if (completedCnt < N) {
-                    if (stack.isEmpty()) {  // 멈춰둔 과제가 없으면
+                if (completedCnt < N) {  // 수행해야 하는 과제가 더 남아있다면,
+                    if (stack.isEmpty()) {  // 멈춰둔 과제가 없으면,
                         ++ptr;
                         curTime = plans[ptr].start;
                         curPlan = new Entry(plans[ptr].name, plans[ptr].duration);
                     }
-                    else {  // 멈춰둔 과제가 있으면
+                    else {  // 멈춰둔 과제가 있으면,
                         curPlan = stack.pop();
                     }
                 }
