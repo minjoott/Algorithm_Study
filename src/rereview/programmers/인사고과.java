@@ -7,7 +7,6 @@ public class 인사고과 {
         int ta = scores[0][0], tb = scores[0][1];
         int tsum = ta + tb;
         int rank = 1;
-
         Arrays.sort(scores, (a, b) -> {
             if (a[0] - b[0] != 0) return b[0] - a[0];
             return a[1] - b[1];
