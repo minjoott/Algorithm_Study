@@ -1,35 +1,37 @@
 package problems.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * https://leetcode.com/problems/permutations/description/
  * [LeetCode] 46. Permutations
- * solved at: 251004
+ * solved at: 251104
  */
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Permutations {
-    static class Solution1_backtracking {
+    class Solution {
+        int N;
         List<List<Integer>> answer = new ArrayList<>();
 
         public List<List<Integer>> permute(int[] nums) {
-            backtracking(new ArrayList<>(), new boolean[nums.length], nums);
+            N = nums.length;
+            backtracking(new ArrayList<>(), new boolean[N], nums);
             return answer;
         }
 
-        void backtracking(List<Integer> path, boolean[] visited, int[] nums) {
-            if (path.size() == nums.length) {
-                answer.add(new ArrayList<>(path));
+        void backtracking(List<Integer> list, boolean[] visited, int[] nums) {
+            if (list.size() == N) {
+                answer.add(new ArrayList<>(list));
                 return;
             }
 
-            for (int i = 0; i < nums.length; i++) {
+            for (int i = 0; i < N; i++) {
                 if (!visited[i]) {
-                    path.add(nums[i]);
+                    list.add(nums[i]);
                     visited[i] = true;
-                    backtracking(path, visited, nums);
-                    path.remove(path.size() - 1);
+                    backtracking(list, visited, nums);
+                    list.remove(list.size() - 1);
                     visited[i] = false;
                 }
             }

@@ -3,14 +3,14 @@ package problems.leetcode;
 /**
  * https://leetcode.com/problems/combinations/description/
  * [LeetCode] 77. Combinations
- * solved at: 251004
+ * solved at: 251104
  */
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Combinations {
-    class Solution1_backtracking {
+    class Solution {
         List<List<Integer>> answer = new ArrayList<>();
 
         public List<List<Integer>> combine(int n, int k) {
@@ -18,16 +18,16 @@ public class Combinations {
             return answer;
         }
 
-        void backtracking(int startNum, List<Integer> comb, int n, int k) {
-            if (comb.size() == k) {
-                answer.add(new ArrayList<>(comb));
+        void backtracking(int start, List<Integer> curr, int n, int k) {
+            if (curr.size() == k) {
+                answer.add(new ArrayList<>(curr));
                 return;
             }
 
-            for (int i = startNum; i <= n; i++) {
-                comb.add(i);
-                backtracking(i + 1, comb, n, k);
-                comb.remove(comb.size() - 1);
+            for (int i = start; i <= n; i++) {
+                curr.add(i);
+                backtracking(i + 1, curr, n, k);
+                curr.remove(curr.size() - 1);
             }
         }
     }

@@ -3,14 +3,14 @@ package problems.leetcode;
 /**
  * https://leetcode.com/problems/subsets/description/
  * [LeetCode] 78. Subsets
- * solved at: 251004
+ * solved at: 251104
  */
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Subsets {
-    class Solution1_backtracking {
+    class Solution {
         List<List<Integer>> answer = new ArrayList<>();
 
         public List<List<Integer>> subsets(int[] nums) {
@@ -18,13 +18,13 @@ public class Subsets {
             return answer;
         }
 
-        void backtracking(int startIdx, List<Integer> path, int[] nums) {
-            answer.add(new ArrayList<>(path));
+        void backtracking(int start, List<Integer> curr, int[] nums) {
+            answer.add(new ArrayList<>(curr));
 
-            for (int i = startIdx; i < nums.length; i++) {
-                path.add(nums[i]);
-                backtracking(i + 1, path, nums);
-                path.remove(path.size() - 1);
+            for (int i = start; i < nums.length; i++) {
+                curr.add(nums[i]);
+                backtracking(i + 1, curr, nums);
+                curr.remove(curr.size() - 1);
             }
         }
     }
