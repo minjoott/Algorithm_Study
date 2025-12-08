@@ -1,4 +1,4 @@
-package problems.backjoon;
+package problems.baekjoon;
 
 /**
  * https://www.acmicpc.net/problem/2110
